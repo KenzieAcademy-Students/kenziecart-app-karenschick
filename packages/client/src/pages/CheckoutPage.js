@@ -15,6 +15,7 @@ const initialState = {
 export default function CheckoutPage(props) {
   const [data, setData] = useState(initialState)
   const { state, resetCart } = useProvideCart()
+  const [orderId, setOrderId] = useState("")
 
   const placeOrder = async (orderFormData) => {
     console.log('handlePlaceOrder', orderFormData)
@@ -31,7 +32,9 @@ export default function CheckoutPage(props) {
     try {
       const orderConfirmation = await createOrder(orderData)
       console.log(orderConfirmation)
-      toast('Order Placed Successfully' + {})
+      console.log(orderConfirmation.data)
+      toast('Order Placed Successfully' + orderConfirmation.data._id)
+      setOrderId(orderConfirmation.data._id)
       resetCart()
       setData({
         isSubmitting: false,
@@ -63,6 +66,8 @@ export default function CheckoutPage(props) {
         }}
       >
         <h1 style={{marginTop: '100px'}}>Thank you!</h1>
+       
+
       </Jumbotron>
       <ErrorBoundary>
         {data.errorMessage && <p className='form-error'>{data.errorMessage}</p>}
@@ -72,6 +77,8 @@ export default function CheckoutPage(props) {
           <Container className='h-50'>
             <div className='row justify-content-center'>
               {data.isConfirmed && <p style={{fontSize: '26px', marginBottom: '30px', marginTop: '20px'}}>Your order is confirmed!</p>}
+              
+              <h5>{orderId}</h5>
 
               <div className='col-sm-12 d-flex justify-content-center'>
                 <p>You'll receive confirmation in your email shortly.</p>
