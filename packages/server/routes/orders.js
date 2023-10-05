@@ -30,6 +30,7 @@ router
       orderTotal: orderTotal,
     }
     try {
+      const newOrder = await Order.create(orderData)
       /* create new order using Order model
         and return order ID
       */
