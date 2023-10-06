@@ -1,3 +1,10 @@
+Sources:
+1:1 with Tim
+Cody Q&A
+
+Questions/Notes:
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
