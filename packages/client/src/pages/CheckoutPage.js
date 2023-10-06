@@ -33,9 +33,7 @@ export default function CheckoutPage(props) {
       const orderConfirmation = await createOrder(orderData);
       console.log(orderConfirmation);
       console.log(orderConfirmation.data);
-      toast(
-        "Order Placed Successfully.  Order Id:" + orderConfirmation.data._id
-      );
+      toast("Order #" + orderConfirmation.data._id + "  Successfully Placed");
       setOrderId(orderConfirmation.data._id);
       resetCart();
       setData({
@@ -79,16 +77,20 @@ export default function CheckoutPage(props) {
               {data.isConfirmed && (
                 <p
                   style={{
-                    fontSize: "26px",
+                    fontSize: "30px",
                     marginBottom: "30px",
                     marginTop: "20px",
                   }}
                 >
-                  Your order is confirmed! 
-                  Order Id: {orderId}
+                  Your order is confirmed!
                 </p>
               )}
-
+              <div className="col-sm-12 d-flex justify-content-center">
+                <p style={{ fontSize: "19px", marginBottom: "35px" }}>
+                  {" "}
+                  Order #{orderId}
+                </p>
+              </div>
               <div className="col-sm-12 d-flex justify-content-center">
                 <p>You'll receive confirmation in your email shortly.</p>
               </div>
