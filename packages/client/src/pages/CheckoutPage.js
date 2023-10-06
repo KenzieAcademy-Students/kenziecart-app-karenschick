@@ -33,7 +33,10 @@ export default function CheckoutPage(props) {
       const orderConfirmation = await createOrder(orderData);
       console.log(orderConfirmation);
       console.log(orderConfirmation.data);
-      toast("Order #" + orderConfirmation.data._id + "  Successfully Placed");
+      toast.success(
+        "Order #" + orderConfirmation.data._id + "  Successfully Placed",
+        { position: toast.POSITION.TOP_CENTER }
+      );
       setOrderId(orderConfirmation.data._id);
       resetCart();
       setData({
@@ -47,6 +50,7 @@ export default function CheckoutPage(props) {
         isSubmitting: false,
         errorMessage: "Error Placing Order",
       });
+      //toast.error("Error Placing Order")
     }
   };
 
