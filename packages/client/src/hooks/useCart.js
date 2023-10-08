@@ -37,10 +37,11 @@ const reducer = (state, action) => {
         nextCart.push(action.payload);
       }
 
+      console.log(action.payload);
       return {
         ...state,
         cart: nextCart,
-        itemCount: state.itemCount + 1,
+        itemCount: state.itemCount + numItemsToAdd,
         cartTotal: calculateCartTotal(nextCart),
       };
     case "REMOVE_ITEM":
@@ -132,15 +133,15 @@ const useProvideCart = () => {
   };
 
   //  Check for saved local cart on load and dispatch to set initial state
-  useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("KenzieCart")) || false;
-    if (savedCart) {
-      dispatch({
-        type: "INIT_SAVED_CART",
-        payload: savedCart,
-      });
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   const savedCart = JSON.parse(localStorage.getItem("KenzieCart")) || false;
+  //   if (savedCart) {
+  //     dispatch({
+  //       type: "INIT_SAVED_CART",
+  //       payload: savedCart,
+  //     });
+  //   }
+  // }, [dispatch]);
 
   return {
     state,
