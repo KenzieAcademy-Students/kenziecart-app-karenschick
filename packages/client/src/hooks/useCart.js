@@ -108,11 +108,13 @@ const reducer = (state, action) => {
       return { ...initialState };
 
     case "INIT_SAVED_CART":
-      
-      return {...state,
+      //savedCart something something
+      return {
+        ...state,
         cart: nextCart,
         itemCount: state.itemCount,
-        cartTotal: calculateCartTotal(nextCart),}  
+        cartTotal: calculateCartTotal(nextCart),
+      };
 
     default:
       return state;
@@ -191,13 +193,6 @@ const useProvideCart = () => {
     dispatch({ type: "DELETE_CART" });
   };
 
-// const initSavedCart = () => {
-//   dispatch({
-//     type: "INIT_SAVED_CART",
-//     payload: savedCart,
-//   });
-// }
-
   //  Check for saved local cart on load and dispatch to set initial state
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("KenzieCart")) || false;
@@ -219,7 +214,6 @@ const useProvideCart = () => {
     loadCart,
     updateCart,
     deleteCart,
-    //initSavedCart
   };
 };
 
