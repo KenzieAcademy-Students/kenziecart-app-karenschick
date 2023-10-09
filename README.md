@@ -2,14 +2,24 @@ Sources:
 1:1 with Tim
 Cody Q&A
 
+
+
 Questions/Notes:
 
 cart Session Persistence:
--is deleteCart same as resetCart?
--in the reducer do i use localStorage.setItem for all cases but resetCart and deleteCart?
 -are my returns correct for newly added cases?
 -are my dispatches correct?
+
+
+
+-is deleteCart same as resetCart?
+yes
+
+-in the reducer do i use localStorage.setItem for all cases but resetCart and deleteCart?
+for load_cart use localStorage.getItem("KenzieCart")
+
 -do I alter the useEffect?
+yes, need to add case for init_saved_cart
 
 
 
