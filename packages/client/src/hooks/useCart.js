@@ -81,7 +81,7 @@ const reducer = (state, action) => {
       localStorage.clear();
       return { ...initialState };
 
-    case "LOADING_CART":
+    case "LOAD_CART":
       localStorage.setItem("KenzieCart", JSON.stringify(nextCart));
       return { ...state };
 
@@ -162,12 +162,17 @@ const useProvideCart = () => {
     return !!state.cart.find((item) => item._id === id);
   };
 
-  const loadingCart = () => { dispatch ({ type:"LOADING_CART", })}
+  const loadCart = () => {
+    dispatch({ type: "LOAD_CART" });
+  };
 
-  const updateCart = () => { dispatch ({ type:"UPDATE_CART", })}
+  const updateCart = () => {
+    dispatch({ type: "UPDATE_CART" });
+  };
 
-  const deleteCart = () => { dispatch ({ type:"DELETE_CART", })}
-  
+  const deleteCart = () => {
+    dispatch({ type: "DELETE_CART" });
+  };
 
   //  Check for saved local cart on load and dispatch to set initial state
   useEffect(() => {
@@ -187,9 +192,9 @@ const useProvideCart = () => {
     removeAllItems,
     resetCart,
     isItemInCart,
-    loadingCart, 
+    loadCart,
     updateCart,
-    deleteCart
+    deleteCart,
   };
 };
 
