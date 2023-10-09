@@ -1,7 +1,9 @@
 import React, { createContext, useContext, useReducer, useMemo } from "react";
 
 const initialState = {
-  displaySidebar: false,
+  currency: "USD",
+  currencySymbol: "$",
+  multiplierFactor: 1,
 };
 
 export const CurrencyContext = createContext(initialState);
@@ -13,7 +15,9 @@ function currencyReducer(state, action) {
     case "SET_CURRENCY": {
       return {
         ...state,
-        displaySidebar: true,
+        currency: "EURO",
+        currencySymbol: "€",
+        multiplierFactor: 0.8,
       };
     }
 
@@ -25,22 +29,12 @@ function currencyReducer(state, action) {
 export const currencyProvider = (props) => {
   const [state, dispatch] = useReducer(currencyReducer, initialState);
 
-  const openSidebar = () => dispatch({ type: "OPEN_SIDEBAR" });
-  const closeSidebar = () => dispatch({ type: "CLOSE_SIDEBAR" });
-  const toggleSidebar = () =>
-    state.displaySidebar
-      ? dispatch({ type: "CLOSE_SIDEBAR" })
-      : dispatch({ type: "OPEN_SIDEBAR" });
-  const closeSidebarIfPresent = () =>
-    state.displaySidebar && dispatch({ type: "CLOSE_SIDEBAR" });
+  const toggleCurrency = () => dispatch({ type: "SET_CURRENCY" });
 
   const value = useMemo(
     () => ({
       ...state,
-      openSidebar,
-      closeSidebar,
-      toggleSidebar,
-      closeSidebarIfPresent,
+      toggleCurrency,
     }),
     [state]
   );
@@ -57,7 +51,7 @@ const useCurrency = () => {
 };
 
 export const ManagedCurrencyContext = ({ children }) => (
-  <CurrencyProvider>{children}</CurrencyProvider>
+  <currencyProvider>{children}</currencyProvider>
 );
 
 export default useCurrency;
