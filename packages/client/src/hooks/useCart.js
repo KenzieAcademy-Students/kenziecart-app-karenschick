@@ -38,12 +38,16 @@ const reducer = (state, action) => {
       }
 
       console.log(action.payload);
+
+      localStorage.setItem("KenzieCart", JSON.stringify(nextCart));
+
       return {
         ...state,
         cart: nextCart,
         itemCount: state.itemCount + numItemsToAdd,
         cartTotal: calculateCartTotal(nextCart),
       };
+
     case "REMOVE_ITEM":
       nextCart = nextCart
         .map((item) =>
@@ -53,21 +57,47 @@ const reducer = (state, action) => {
         )
         .filter((item) => item.quantity > 0);
 
+      localStorage.setItem("KenzieCart", JSON.stringify(nextCart));
+
       return {
         ...state,
         cart: nextCart,
         itemCount: state.itemCount > 0 ? state.itemCount - 1 : 0,
         cartTotal: calculateCartTotal(nextCart),
       };
+
     case "REMOVE_ALL_ITEMS":
       let quantity = state.cart.find((i) => i._id === action.payload).quantity;
+
+      localStorage.setItem("KenzieCart", JSON.stringify(nextCart));
+
       return {
         ...state,
         cart: state.cart.filter((item) => item._id !== action.payload),
         itemCount: state.itemCount > 0 ? state.itemCount - quantity : 0,
       };
+
     case "RESET_CART":
+      localStorage.clear();
       return { ...initialState };
+
+    case "LOADING_CART":
+      localStorage.setItem("KenzieCart", JSON.stringify(nextCart));
+      return { ...state };
+
+    case "UPDATE_CART":
+      localStorage.setItem("KenzieCart", JSON.stringify(nextCart));
+      return {
+        ...state,
+        cart: nextCart,
+        itemCount: state.itemCount,
+        cartTotal: calculateCartTotal(nextCart),
+      };
+
+    case "DELETE_CART":
+      localStorage.clear();
+      return { ...initialState };
+
     default:
       return state;
   }
@@ -132,6 +162,13 @@ const useProvideCart = () => {
     return !!state.cart.find((item) => item._id === id);
   };
 
+  const loadingCart = () => { dispatch ({ type:"LOADING_CART", })}
+
+  const updateCart = () => { dispatch ({ type:"UPDATE_CART", })}
+
+  const deleteCart = () => { dispatch ({ type:"DELETE_CART", })}
+  
+
   //  Check for saved local cart on load and dispatch to set initial state
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("KenzieCart")) || false;
@@ -150,6 +187,9 @@ const useProvideCart = () => {
     removeAllItems,
     resetCart,
     isItemInCart,
+    loadingCart, 
+    updateCart,
+    deleteCart
   };
 };
 
