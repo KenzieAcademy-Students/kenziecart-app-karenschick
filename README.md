@@ -1,3 +1,20 @@
+Sources:
+1:1 with Tim
+Cody Q&A
+
+Questions/Notes:
+
+cart Session Persistence:
+-is deleteCart same as resetCart?
+-in the reducer do i use localStorage.setItem for all cases but resetCart and deleteCart?
+-are my returns correct for newly added cases?
+-are my dispatches correct?
+-do I alter the useEffect?
+
+
+
+
+
 # se-mern-ecommerce-app
 
 ## Run Client/Server for Development

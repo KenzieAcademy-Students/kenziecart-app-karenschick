@@ -1,8 +1,3 @@
-Sources:
-1:1 with Tim
-Cody Q&A
-
-Questions/Notes:
 
 
 # Getting Started with Create React App
