@@ -113,7 +113,7 @@ const reducer = (state, action) => {
       //console.log(initSavedCart);
 
       if (initSavedCart) {
-        const { cart, itemCount, cartTotal } = initSavedCart;
+        const { cart, itemCount } = initSavedCart;
 
         return {
           ...state,
