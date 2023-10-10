@@ -5,12 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons/faShoppingBag'
 import { useUI, useProvideCart } from 'hooks'
 import CartSidebar from 'components/CartSidebar'
-
+import useCurrency from 'hooks/useCurrency'
 
 export default function Header() {
   const { openSidebar } = useUI()
   const { state } = useProvideCart()
-  const { currency } = useContext()
+  const { currency } = useCurrency()
 
   const handleToggleCurrency = () =>{
 
@@ -30,7 +30,7 @@ export default function Header() {
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='ml-auto mr-5' style={{justifyContent: 'center'}}>
-            {/* <Form.Switch checked={} onChange={handleToggleCurrency} /> */}
+            {/* <Form.Switch checked={currency: "USD"} onChange={handleToggleCurrency} /> */}
             <LinkContainer className='d-flex align-items-center' to={`/`}  style={{color: 'white', marginRight: '20px'}}>
               <Nav.Link>Shop</Nav.Link>
             </LinkContainer>
