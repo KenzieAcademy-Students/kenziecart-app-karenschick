@@ -31,10 +31,15 @@ export const CurrencyProvider = (props) => {
 
   const toggleCurrency = () => dispatch({ type: "SET_CURRENCY" });
 
+  const getPrice = (amount) => {
+    return amount * multiplierFactor;
+  };
+
   const value = useMemo(
     () => ({
       ...state,
       toggleCurrency,
+      getPrice,
     }),
     [state]
   );
@@ -53,8 +58,5 @@ const useCurrency = () => {
 export const ManagedCurrencyContext = ({ children }) => (
   <CurrencyProvider>{children}</CurrencyProvider>
 );
-
-
-
 
 export default useCurrency;
