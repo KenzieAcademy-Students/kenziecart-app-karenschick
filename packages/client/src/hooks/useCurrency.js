@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useReducer, useMemo } from "react";
 
 const initialState = {
-  currency: "USD",
-  currencySymbol: "$",
+  currency: "",
+  currencySymbol: "",
   multiplierFactor: 1,
 };
 
@@ -13,12 +13,21 @@ CurrencyContext.displayName = "CurrencyContext";
 function currencyReducer(state, action) {
   switch (action.type) {
     case "SET_CURRENCY": {
-      return {
-        ...state,
-        currency: "EURO",
-        currencySymbol: "€",
-        multiplierFactor: 0.8,
-      };
+      if (currency === "EURO") {
+        return {
+          ...state,
+          currency: "EURO",
+          currencySymbol: "€",
+          multiplierFactor: 0.8,
+        };
+      } else if (currency === "USD") {
+        return {
+          ...state,
+          currency: "USD",
+          currencySymbol: "$",
+          multiplierFactor: 1,
+        };
+      }
     }
 
     default:
