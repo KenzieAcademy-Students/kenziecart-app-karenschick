@@ -1,3 +1,4 @@
+import { CartItem } from "components";
 import React, { useReducer, useContext, createContext, useEffect } from "react";
 
 const initialState = {
@@ -8,7 +9,7 @@ const initialState = {
 
 export const calculateCartTotal = (cartItems) => {
   let total = 0;
-
+  //console.log(cartItems);
   cartItems.map((item) => (total += item.price * item.quantity));
 
   return parseFloat(total.toFixed(2));
@@ -108,13 +109,24 @@ const reducer = (state, action) => {
       return { ...initialState };
 
     case "INIT_SAVED_CART":
-      //savedCart something something
-      return {
-        ...state,
-        cart: nextCart,
-        itemCount: state.itemCount,
-        cartTotal: calculateCartTotal(nextCart),
-      };
+      const initSavedCart = action.payload;
+      //console.log(initSavedCart);
+
+      if (initSavedCart) {
+        const { cart, itemCount, cartTotal } = initSavedCart;
+
+        return {
+          ...state,
+
+          cart: cart,
+          itemCount: itemCount,
+          cartTotal: calculateCartTotal(cart),
+        };
+      } else {
+        return {
+          ...state,
+        };
+      }
 
     default:
       return state;
