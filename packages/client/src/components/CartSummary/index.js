@@ -11,6 +11,7 @@ export default function CartSummary({ cartTotal }) {
           </Col>
           <Col xs='3' className='text-right'>
             <p className='summary-value'>$0</p>
+            {/* <p className='summary-value'>{getPrice()}</p> */}
           </Col>
         </Row>
         <Row className='mb-2 summary-item'>
@@ -19,6 +20,7 @@ export default function CartSummary({ cartTotal }) {
           </Col>
           <Col xs='3' className='text-right'>
             <p className='summary-value'>${cartTotal}</p>
+            {/* <p className='summary-value'>{getPrice(cartTotal)}</p> */}
           </Col>
         </Row>
       </Container>

@@ -46,7 +46,10 @@ export default function CartItem({ item }) {
               <p className='item-label'>price</p>
             </Col>
             <Col xs='3' className='text-right'>
-              <p className='price item-value'>{` $${item.price}`}</p>
+              <p className='price item-value'>{` $${item.price}`} </p>
+              {/* <p className='price item-value'>{getPrice(item.price)} </p> */}
+
+              
             </Col>
           </Row>
           <Row className='mb-2 align-items-center'>

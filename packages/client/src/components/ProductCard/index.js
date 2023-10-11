@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons/faShoppingBag'
 import { useProvideCart, useUI } from 'hooks'
 import './ProductCard.scss'
+//import { CurrencyProvider } from 'hooks/useCurrency' 
 
 export default function ProductCard({ product }) {
   const { addItem, isItemInCart } = useProvideCart()
@@ -38,7 +39,8 @@ export default function ProductCard({ product }) {
                 <Link to={`p/${product._id}`}>{product.name}</Link>
               </Col>
               <Col className='text-right font-weight-bold'>
-                ${product.price}
+              ${product.price}
+                {/* {getPrice(product.price)} */}
               </Col>
             </Row>
           </Card.Title>
