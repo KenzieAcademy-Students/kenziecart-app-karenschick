@@ -6,6 +6,7 @@ import { faShoppingBag } from '@fortawesome/free-solid-svg-icons/faShoppingBag'
 import { useProvideCart, useUI } from 'hooks'
 import './ProductCard.scss'
 //import { CurrencyProvider } from 'hooks/useCurrency' 
+import { CurrencyContext } from 'hooks/useCurrency'
 
 export default function ProductCard({ product }) {
   const { addItem, isItemInCart } = useProvideCart()
