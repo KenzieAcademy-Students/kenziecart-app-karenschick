@@ -39,7 +39,6 @@ const reducer = (state, action) => {
       }
 
       //console.log(action.payload);
-
       var addedItem = {
         ...state,
         cart: nextCart,
@@ -86,6 +85,7 @@ const reducer = (state, action) => {
 
     case "RESET_CART":
       localStorage.clear();
+
       return { ...initialState };
 
     case "LOAD_CART":
