@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons/faShoppingBag";
 import { useUI, useProvideCart } from "hooks";
 import CartSidebar from "components/CartSidebar";
-import {useCurrency} from "hooks/useCurrency";
+import { useCurrency } from "hooks/useCurrency";
 
 export default function Header() {
   const { openSidebar } = useUI();
@@ -30,7 +30,14 @@ export default function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto mr-5" style={{ justifyContent: "center" }}>
-            <Form.Group className="d-flex mt-3  text-white mr-3">
+            <LinkContainer
+              className="d-flex align-items-center"
+              to={`/`}
+              style={{ color: "white", marginRight: "20px" }}
+            >
+              <Nav.Link>Shop</Nav.Link>
+            </LinkContainer>
+            <Form.Group className="d-flex mt-3 ml-4 text-white mr-5">
               <Form.Label as="span">USD</Form.Label>
               <Form.Check
                 className="ml-3 mr-1"
@@ -41,13 +48,6 @@ export default function Header() {
               />
               <Form.Label as="span">EURO</Form.Label>
             </Form.Group>
-            <LinkContainer
-              className="d-flex align-items-center"
-              to={`/`}
-              style={{ color: "white", marginRight: "20px" }}
-            >
-              <Nav.Link>Shop</Nav.Link>
-            </LinkContainer>
             <div
               className="d-flex align-items-center ml-1"
               onClick={openSidebar}
