@@ -12,7 +12,8 @@ coupon codes:
 alternate currency support:
 -how do i build handleToggleCurrency in header?
 -how do i pass getPrice function to each file?
-is my Form.Switch correct?
+-is my Form.Switch correct?
+
 
 
 

@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useReducer, useMemo } from "react";
 
 const initialState = {
-  currency: "USD",
   currencySymbol: "$",
   multiplierFactor: 1,
 };
@@ -13,22 +12,16 @@ CurrencyContext.displayName = "CurrencyContext";
 function currencyReducer(state, action) {
   switch (action.type) {
     case "SET_CURRENCY": {
-      
-        return {
-          ...state,
-          
-          currencySymbol: state.currencySymbol === "$" ?"€":"$",
-          multiplierFactor: state.multiplierFactor === 1? 0.8:1,
-        };
-      
-      }
-
+      return {
+        ...state,
+        currencySymbol: state.currencySymbol === "$" ? "€" : "$",
+        multiplierFactor: state.multiplierFactor === 1 ? 0.8 : 1,
+      };
+    }
     default:
       return state;
   }
 }
-
-
 
 export const CurrencyProvider = (props) => {
   const [state, dispatch] = useReducer(currencyReducer, initialState);
@@ -36,20 +29,16 @@ export const CurrencyProvider = (props) => {
   const toggleCurrency = () => dispatch({ type: "SET_CURRENCY" });
 
   const getPrice = (amount) => {
-    const newAmount = amount * state.multiplierFactor
-    return `${state.currencySymbol}${newAmount} `
+    const newAmount = amount * state.multiplierFactor;
+    return `${state.currencySymbol}${newAmount} `;
   };
 
-  const value = useMemo(
-    () => ({
-      ...state,
-      toggleCurrency,
-      getPrice,
-    }),
-    [state]
+  return (
+    <CurrencyContext.Provider
+      value={{ toggleCurrency, getPrice, currency: state }}
+      {...props}
+    />
   );
-
-  return <CurrencyContext.Provider value={{toggleCurrency, getPrice, currency:state}} {...props} />;
 };
 
 export const useCurrency = () => {
