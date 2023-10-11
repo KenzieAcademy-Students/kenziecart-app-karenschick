@@ -6,9 +6,12 @@ Cody Q&A
 
 Questions/Notes:
 
+coupon codes:
+-lost on how to create the coupons route...
+
 alternate currency support:
-how do i build handleToggleCurrency in header?
-how do i pass getPrice function to each file?
+-how do i build handleToggleCurrency in header?
+-how do i pass getPrice function to each file?
 is my Form.Switch correct?
 
 
