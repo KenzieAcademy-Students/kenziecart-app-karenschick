@@ -9,6 +9,7 @@ Questions/Notes:
 alternate currency support:
 how do i build handleToggleCurrency in header?
 how do i pass getPrice function to each file?
+is my Form.Switch correct?
 
 
 
@@ -17,7 +18,8 @@ cart Session Persistence:
 set variable initSavedCart to action.payload (savedCart)
 the destructure the cart and item count out of initSavedCart and return the state for each property except cartTotal?
 
-Why am i not destructuring cartTotal?
+-Why am i not destructuring cartTotal?
+definitely have to destrucure cartTotal
 
 
 -are my dispatches correct?
