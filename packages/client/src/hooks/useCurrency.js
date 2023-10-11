@@ -13,19 +13,15 @@ CurrencyContext.displayName = "CurrencyContext";
 function currencyReducer(state, action) {
   switch (action.type) {
     case "SET_CURRENCY": {
-      if (state.currency === "EURO") {
+      
         return {
           ...state,
-          currency: "EURO",
-          currencySymbol: "€",
-          multiplierFactor: 0.8,
+          
+          currencySymbol: state.currencySymbol === "$" ?"€":"$",
+          multiplierFactor: state.multiplierFactor === 1? 0.8:1,
         };
-      } else {
-        return {
-          ...state,
-        };
+      
       }
-    }
 
     default:
       return state;
@@ -40,7 +36,8 @@ export const CurrencyProvider = (props) => {
   const toggleCurrency = () => dispatch({ type: "SET_CURRENCY" });
 
   const getPrice = (amount) => {
-    return amount * state.multiplierFactor;
+    const newAmount = amount * state.multiplierFactor
+    return `${state.currencySymbol}${newAmount} `
   };
 
   const value = useMemo(
@@ -52,10 +49,10 @@ export const CurrencyProvider = (props) => {
     [state]
   );
 
-  return <CurrencyContext.Provider value={value} {...props} />;
+  return <CurrencyContext.Provider value={{toggleCurrency, getPrice, currency:state}} {...props} />;
 };
 
-const useCurrency = () => {
+export const useCurrency = () => {
   const context = useContext(CurrencyContext);
   if (context === undefined) {
     throw new Error(`useCurrency must be used within a CurrencyProvider`);
