@@ -1,17 +1,15 @@
 import React from "react";
 import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
-//import { useCurrency } from "hooks/useCurrency";
-//import { useProvideCart } from "hooks";
 import useCurrency from "hooks/useCurrency";
+import { useState } from "react";
 
 export default function CartSummary({ cartTotal }) {
   const { getPrice } = useCurrency();
-  // const { coupons, setCoupons} = 
+  const [ coupons, setCoupons] = useState("")
 
-  // const handleSearchInputChange = (e) => {
-  //   e.preventDefault();
-  //   setCoupons(e.target.value);
-  // };
+  const handleSearchInputChange = (e) => {
+    setCoupons(e.target.value);
+  };
 
   return (
     <div className="cart-summary">
@@ -23,8 +21,8 @@ export default function CartSummary({ cartTotal }) {
                 type="text"
                 placeholder="Enter Coupon Code"
                 name="coupons"
-                //onChange={handleSearchInputChange}
-                //value={coupons}
+                onChange={handleSearchInputChange}
+                value={coupons}
                 minLength={1}
                 maxLength={30}
               ></Form.Control>
@@ -35,6 +33,7 @@ export default function CartSummary({ cartTotal }) {
             {" "}
             Apply
           </Button>
+          
         </Col>
         </Row>
         

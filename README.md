@@ -7,9 +7,30 @@ https://www.digitalocean.com/community/tutorials/use-expressjs-to-get-url-and-po
 Questions/Notes:
 
 coupon codes:
--lost on how to create the coupons route...
--what value do i use Form Control in index.js
+-lost on how to create the coupons endpoint...
+-what value do i use in Form Control in CartSumary.js
+-where do i get payload from?
 
+-how do i get the discount and code to apply_coupon?
+create payload (still not sure where that comes from), then create varaibles in the case for action.payload.couponCode, action.payload.couponDiscount
+
+-do i use updatedCart in apply_coupon?? is that why we made the variable global?
+cody's response: I suggested that you use var because you needed to use the updatedCart variable in multiple switch cases. Since switch cases are not inherently scoped, the variable would be accessible anywhere in the reducer function.
+
+attempted code for APPLY_COUPON
+// if (couponDiscount) {
+    //   const discountCartTotal = calculateCartTotal(nextCart) * couponDiscount;
+    //   return {
+    //     ...state,
+    //     cart: nextCart,
+    //     itemCount: state.itemCount,
+    //     cartTotal: discountCartTotal,
+    //   };
+    // } else {
+    //   return {
+    //     ...state,
+    //   };
+    // }
 
 alternate currency support:
 -how do i build handleToggleCurrency in header?

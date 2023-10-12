@@ -9,12 +9,10 @@ router
     const couponDiscount = req.query.couponDiscount;
 
     try {
-      res.send({
-        couponCode: couponCode,
-        couponDiscount: couponDiscount,
-      });
+      await Coupon.create({couponCode, couponDiscount})
+      res.sendStatus(200);
     } catch (error) {
-      res.status(404).send("error");
+      res.status(400).send("error");
     }
   })
 
@@ -23,9 +21,12 @@ router
     const couponDiscount = req.query.couponDiscount;
 
     try {
+      const veryifyCoupon = await Coupon.findOne({couponCode})
+      if (!veryifyCoupon){ 
+        return res.sendStatus(404)
+      }
       res.send({
-        couponCode: couponCode,
-        couponDiscount: couponDiscount,
+        couponDiscount: veryifyCoupon.couponDiscount,
       });
     } catch (error) {
       res.status(404).send("error");

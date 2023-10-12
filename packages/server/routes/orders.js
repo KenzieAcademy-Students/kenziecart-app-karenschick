@@ -19,6 +19,7 @@ router
       customerDetails: { firstName, lastName, email, address1, address2 },
       items,
       orderTotal,
+      coupon,
     } = req.body;
     const itemIdList = items.map((i) => i._id);
     const orderData = {
@@ -28,6 +29,7 @@ router
       customerAddress2: address2,
       items: itemIdList,
       orderTotal: orderTotal,
+      coupon,
     };
     try {
       const newOrder = await Order.create(orderData);

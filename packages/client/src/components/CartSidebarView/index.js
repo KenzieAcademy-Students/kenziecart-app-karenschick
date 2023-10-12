@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
 import { useUI } from 'hooks'
 import { useProvideCart, useRouter } from 'hooks'
-import { CartList, CartSummary, CheckoutBox } from 'components'
+import { CartCoupon, CartList, CartSummary, CheckoutBox } from 'components'
 import './CartSidebarView.scss'
 
 const CartSidebarView = () => {
@@ -45,6 +45,7 @@ const CartSidebarView = () => {
 
       {state.cart.length > 0 && (
         <div className='cart-checkout'>
+        <CartCoupon />
           <CartSummary cartTotal={state.cartTotal} />
           <CheckoutBox
             handleShopping={handleClose}

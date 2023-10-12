@@ -5,9 +5,10 @@ const initialState = {
   cart: [],
   itemCount: 0,
   cartTotal: 0,
+  coupon:null,
 };
 
-export const calculateCartTotal = (cartItems) => {
+export const calculateCartTotal = (cartItems, discount = ) => {
   let total = 0;
   //console.log(cartItems);
   cartItems.map((item) => (total += item.price * item.quantity));
@@ -128,22 +129,16 @@ const reducer = (state, action) => {
       }
 
     case "APPLY_COUPON":
-      //do i use updatedCart in here?? is that why we made the variable global?
       //update the cart total
-      
-      // if (couponDiscount) {
-      //   const discountCartTotal = calculateCartTotal(nextCart) * couponDiscount;
-      //   return {
-      //     ...state,
-      //     cart: nextCart,
-      //     itemCount: state.itemCount,
-      //     cartTotal: discountCartTotal,
-      //   };
-      // } else {
-      //   return {
-      //     ...state,
-      //   };
-      // }
+
+      const appliedCouponCode = action.payload.couponCode;
+      const appliedCouponDiscount = action.payload.couponDiscount;
+
+      return {
+        ...state,
+        appliedCouponCode: appliedCouponCode,
+        appliedCouponDiscount: appliedCouponDiscount,
+      };
 
     default:
       return state;
@@ -222,8 +217,9 @@ const useProvideCart = () => {
     dispatch({ type: "DELETE_CART" });
   };
 
-  const applyCoupon = () => {
-    dispatch({ type: "APPLY_COUPON" });
+  const applyCoupon = (coupon) => {
+    dispatch({ type: "APPLY_COUPON",  });
+    //where do i get payload from?
   };
 
   //  Check for saved local cart on load and dispatch to set initial state
