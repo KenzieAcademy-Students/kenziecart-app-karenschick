@@ -1,13 +1,15 @@
 Sources:
 1:1 with Tim
 Cody Q&A
-
+https://www.digitalocean.com/community/tutorials/use-expressjs-to-get-url-and-post-parameters
 
 
 Questions/Notes:
 
 coupon codes:
 -lost on how to create the coupons route...
+-what value do i use Form Control in index.js
+
 
 alternate currency support:
 -how do i build handleToggleCurrency in header?
