@@ -102,6 +102,7 @@ const reducer = (state, action) => {
       };
 
       localStorage.setItem("KenzieCart", JSON.stringify(updatedCart));
+      
       return updatedCart;
 
     case "DELETE_CART":
@@ -111,7 +112,6 @@ const reducer = (state, action) => {
     case "INIT_SAVED_CART":
       const initSavedCart = action.payload;
       //console.log(initSavedCart);
-
       if (initSavedCart) {
         const { cart, itemCount, cartTotal } = initSavedCart;
 
@@ -126,6 +126,9 @@ const reducer = (state, action) => {
           ...state,
         };
       }
+
+    case "APPLY_COUPON":
+      return { ...state };
 
     default:
       return state;
@@ -204,6 +207,10 @@ const useProvideCart = () => {
     dispatch({ type: "DELETE_CART" });
   };
 
+  const applyCoupon = () => {
+    dispatch({ type: "APPLY_COUPON" });
+  };
+
   //  Check for saved local cart on load and dispatch to set initial state
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("KenzieCart")) || false;
@@ -225,6 +232,7 @@ const useProvideCart = () => {
     loadCart,
     updateCart,
     deleteCart,
+    applyCoupon,
   };
 };
 
