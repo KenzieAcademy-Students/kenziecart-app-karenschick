@@ -102,7 +102,7 @@ const reducer = (state, action) => {
       };
 
       localStorage.setItem("KenzieCart", JSON.stringify(updatedCart));
-      
+
       return updatedCart;
 
     case "DELETE_CART":
@@ -128,7 +128,22 @@ const reducer = (state, action) => {
       }
 
     case "APPLY_COUPON":
-      return { ...state };
+      //do i use updatedCart in here?? is that why we made the variable global?
+      //update the cart total
+      
+      // if (couponDiscount) {
+      //   const discountCartTotal = calculateCartTotal(nextCart) * couponDiscount;
+      //   return {
+      //     ...state,
+      //     cart: nextCart,
+      //     itemCount: state.itemCount,
+      //     cartTotal: discountCartTotal,
+      //   };
+      // } else {
+      //   return {
+      //     ...state,
+      //   };
+      // }
 
     default:
       return state;
