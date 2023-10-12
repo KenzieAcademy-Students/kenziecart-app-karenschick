@@ -2,12 +2,11 @@ import mongoose from "mongoose";
 const { ObjectId } = mongoose.Schema.Types;
 
 const couponSchema = new mongoose.Schema({
-  code: {
+  couponCode: {
     type: String,
-    unique: true,
     required: true,
   },
-  discount: {
+  couponDiscount: {
     type: Number,
     required: true,
   },
