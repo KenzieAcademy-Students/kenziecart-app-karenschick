@@ -9,11 +9,11 @@ const orderSchema = new mongoose.Schema(
     },
     customerEmail: {
       type: String,
-      required: true,
+      required: false,
     },
     customerAddress1: {
       type: String,
-      required: true,
+      required: false,
     },
     customerAddress2: {
       type: String,

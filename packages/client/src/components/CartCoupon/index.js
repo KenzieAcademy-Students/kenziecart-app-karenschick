@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 //import "./CartCoupon.scss"
 
 function CartCoupon({ coupon, applyCoupon, removeCoupon }) {
+  console.log(coupon)
   const [code, setCode] = useState(coupon ? coupon.code:"");
   const [codeAccepted, setCodeAccepted] = useState();
 
@@ -23,9 +24,9 @@ function CartCoupon({ coupon, applyCoupon, removeCoupon }) {
     e.preventDefault();
 
     try {
-      const response = await verifyCoupon(code);
-      setCodeAccepted(true);
+      const response = await verifyCoupon(code);      
       applyCoupon(response.data);
+      setCodeAccepted(true);
       
       console.log(response);
     } catch (error) {
@@ -44,7 +45,7 @@ function CartCoupon({ coupon, applyCoupon, removeCoupon }) {
               placeholder="Enter Coupon Code"
               name="code"
               onChange={handleSearchInputChange}
-              inInvalid={codeAccepted === false}
+              isInvalid={codeAccepted === false}
               value={code}
             />
           ) : (

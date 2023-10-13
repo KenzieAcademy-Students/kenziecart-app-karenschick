@@ -5,28 +5,35 @@ const router = express.Router();
 
 router
   .get("/create", async (req, res) => {
-    const couponCode = req.query.couponCode;
-    const couponDiscount = req.query.couponDiscount;
+    const { code, discount, exp } = req.query;
+    //const discount = req.query;
+
+    if (!code || !discount)
+      return res.status(422).json({ error: "provide a code and discount" });
 
     try {
-      await Coupon.create({ couponCode, couponDiscount });
+      const queryParams = { code, discount };
+      if (exp) queryParams.expirationDate = new Date(exp);
+      await Coupon.create(queryParams);
       res.sendStatus(200);
     } catch (error) {
-      res.status(400).send("error");
+      res.status(500);
     }
   })
 
   .get("/verify", async (req, res) => {
-    const couponCode = req.query.couponCode;
-    const couponDiscount = req.query.couponDiscount;
+    const { code, discount } = req.query;
+    // const code = req.query.code;
+    // const discount = req.query.discount;
 
     try {
-      const veryifyCoupon = await Coupon.findOne({ couponCode });
+      const veryifyCoupon = await Coupon.findOne({ code:code.toUpperCase() });
       if (!veryifyCoupon) {
         return res.sendStatus(404);
       }
       res.send({
-        couponDiscount: veryifyCoupon.couponDiscount,
+        discount: veryifyCoupon.discount,
+        code: veryifyCoupon.code
       });
     } catch (error) {
       res.status(404).send("error");

@@ -135,7 +135,7 @@ const reducer = (state, action) => {
 
       //const appliedCouponCode = action.payload.couponCode;
       //const appliedCouponDiscount = action.payload.couponDiscount;
-
+console.log(action.payload)
       return {
         ...state,
         coupon: action.payload,

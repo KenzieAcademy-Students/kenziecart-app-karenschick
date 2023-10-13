@@ -2,32 +2,32 @@ import mongoose from "mongoose";
 
 const couponSchema = new mongoose.Schema(
   {
-    couponCode: {
+    code: {
       type: String,
       required: true,
     },
-    couponDiscount: {
+    discount: {
       type: Number,
       required: true,
       min: 0,
       max: 1,
     },
-    // expirationDate: {
-    //   type: Date,
-    //   required: false,
-    // },
+    expirationDate: {
+      type: Date,
+      required: false,
+    },
   },
-  // { timestamps: true }
+  { timestamps: true }
 );
 
-// couponSchema.pre("save", function (next) {
-//   this.couponCode = this.couponCode.toUpperCase();
-//   next();
-// });
+couponSchema.pre("save", function (next) {
+  this.code = this.code.toUpperCase();
+  next();
+});
 
-// couponSchema.methods.isValid = function () {
-//   return this.expirationDate > new Date();
-// };
+couponSchema.methods.isValid = function () {
+  return this.expirationDate > new Date();
+};
 
 const Coupon = mongoose.model("Coupon", couponSchema);
 

@@ -1,5 +1,6 @@
 import express from "express";
-import { Order } from "../models";
+import { Order, Coupon } from "../models";
+
 
 const router = express.Router();
 
@@ -32,12 +33,17 @@ router
       coupon,
     };
     try {
+      if (coupon) {
+      const couponnnn = await Coupon.findOne({code:coupon.code})
+      orderData.coupon = couponnnn
+      } 
       const newOrder = await Order.create(orderData);
       /* create new order using Order model
         and return order ID
       */
       res.json(newOrder);
     } catch (error) {
+      console.log(error)
       next(new Error("Error Placing Order"));
     }
   })
