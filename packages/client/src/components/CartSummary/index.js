@@ -18,12 +18,12 @@ export default function CartSummary({ cartTotal, discount }) {
         </Row>
         {discount && (
           <>
-            <Row>
-              <Col>
+            <Row className="mb-2">
+              <Col className="d-flex flex-column-reverse">
                 <p>Discount</p>
               </Col>
-              <Col>
-                <p>{discount * 100}% off</p>
+              <Col xs="3" className="text-right">
+                <p className="summary-value">{discount * 100}% off</p>
               </Col>
             </Row>
           </>

@@ -30,8 +30,9 @@ function CartCoupon({ coupon, applyCoupon }) {
 
   return (
     <Container>
-      <Row as={Form} onSubmit={handleSubmit} className="mb-4">
-        <Col as={Form.Group}>
+      <Row as={Form} onSubmit={handleSubmit} className="mt-3 mb-3">
+        <>
+        <Col  xs={12} md={6}>
           {!codeAccepted ? (
             <Form.Control
               type="text"
@@ -43,13 +44,15 @@ function CartCoupon({ coupon, applyCoupon }) {
             />
           ) : (
             <span>
-              {coupon.code} ({coupon.discount * 100}% off)
+              {coupon.code}   ({coupon.discount * 100}% off)
             </span>
+            
           )}
         </Col>
-        <Col className="my-auto">
+        </>
+        <Col className="d-flex flex-column-reverse" xs={12} md={6}>
           <Button
-            className="btn-sm "
+            //className="btn-sm "
             type="submit"
             variant="info"
             disabled={codeAccepted}
