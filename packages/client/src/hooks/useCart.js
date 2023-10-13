@@ -5,13 +5,15 @@ const initialState = {
   cart: [],
   itemCount: 0,
   cartTotal: 0,
-  coupon:null,
+  coupon: null,
 };
 
-export const calculateCartTotal = (cartItems, discount = ) => {
+export const calculateCartTotal = (cartItems, discount = 0) => {
   let total = 0;
   //console.log(cartItems);
   cartItems.map((item) => (total += item.price * item.quantity));
+
+  total -= total * discount;
 
   return parseFloat(total.toFixed(2));
 };
@@ -131,14 +133,24 @@ const reducer = (state, action) => {
     case "APPLY_COUPON":
       //update the cart total
 
-      const appliedCouponCode = action.payload.couponCode;
-      const appliedCouponDiscount = action.payload.couponDiscount;
+      //const appliedCouponCode = action.payload.couponCode;
+      //const appliedCouponDiscount = action.payload.couponDiscount;
 
       return {
         ...state,
-        appliedCouponCode: appliedCouponCode,
-        appliedCouponDiscount: appliedCouponDiscount,
+        coupon: action.payload,
+        cartTotal: calculateCartTotal(nextCart, action.payload.discount),
+        //appliedCouponCode: appliedCouponCode,
+        //appliedCouponDiscount: appliedCouponDiscount,
       };
+
+    case "REMOVE_COUPON": {
+      return {
+        ...state,
+        coupon: null,
+        cartTotal: calculateCartTotal(nextCart),
+      };
+    }
 
     default:
       return state;
@@ -218,8 +230,13 @@ const useProvideCart = () => {
   };
 
   const applyCoupon = (coupon) => {
-    dispatch({ type: "APPLY_COUPON",  });
-    //where do i get payload from?
+    dispatch({ type: "APPLY_COUPON", payload: coupon });
+    
+  };
+
+  const removeCoupon = () => {
+    dispatch({ type: "REMOVE_COUPON"});
+   
   };
 
   //  Check for saved local cart on load and dispatch to set initial state
@@ -244,6 +261,7 @@ const useProvideCart = () => {
     updateCart,
     deleteCart,
     applyCoupon,
+    removeCoupon
   };
 };
 

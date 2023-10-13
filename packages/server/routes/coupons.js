@@ -4,26 +4,26 @@ import { Coupon } from "../models";
 const router = express.Router();
 
 router
-  .get("/create", async (req, res, next) => {
+  .get("/create", async (req, res) => {
     const couponCode = req.query.couponCode;
     const couponDiscount = req.query.couponDiscount;
 
     try {
-      await Coupon.create({couponCode, couponDiscount})
+      await Coupon.create({ couponCode, couponDiscount });
       res.sendStatus(200);
     } catch (error) {
       res.status(400).send("error");
     }
   })
 
-  .get("/verify", async (req, res, next) => {
+  .get("/verify", async (req, res) => {
     const couponCode = req.query.couponCode;
     const couponDiscount = req.query.couponDiscount;
 
     try {
-      const veryifyCoupon = await Coupon.findOne({couponCode})
-      if (!veryifyCoupon){ 
-        return res.sendStatus(404)
+      const veryifyCoupon = await Coupon.findOne({ couponCode });
+      if (!veryifyCoupon) {
+        return res.sendStatus(404);
       }
       res.send({
         couponDiscount: veryifyCoupon.couponDiscount,
@@ -33,3 +33,5 @@ router
     }
   });
 module.exports = router;
+
+export default router;

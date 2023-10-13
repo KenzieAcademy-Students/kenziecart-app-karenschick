@@ -22,7 +22,8 @@ export default function CheckoutPage(props) {
     let orderData = {
       customerDetails: orderFormData,
       items: state.cart,
-      orderTotal: calculateCartTotal(state.cart),
+      orderTotal: calculateCartTotal(state.cart, state.coupon ? state.coupon.discount : 0),
+      coupon: state.coupon,
       
     };
     setData({

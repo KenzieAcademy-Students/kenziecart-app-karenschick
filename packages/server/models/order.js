@@ -28,9 +28,10 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    couponCode: {
+    coupon: {
       type: ObjectId,
       ref: "Coupon",
+      required: false,
     },
   },
   { timestamps: true }

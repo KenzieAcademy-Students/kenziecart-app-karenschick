@@ -29,7 +29,7 @@ export const CurrencyProvider = (props) => {
   const toggleCurrency = () => dispatch({ type: "SET_CURRENCY" });
 
   const getPrice = (amount) => {
-    const newAmount = amount * state.multiplierFactor;
+    const newAmount = (amount * state.multiplierFactor).toFixed();
     return `${state.currencySymbol}${newAmount} `;
   };
 

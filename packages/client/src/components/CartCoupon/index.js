@@ -1,9 +1,73 @@
-import React from 'react'
+import React from "react";
+import { Container, Row, Col, InputGroup, Form, Button } from "react-bootstrap";
+import { useState } from "react";
+import axios from "../../utils/axiosConfig";
+import { verifyCoupon } from "utils/axiosService";
+import { toast } from "react-toastify";
+//import "./CartCoupon.scss"
 
-function CartCoupon() {
+function CartCoupon({ coupon, applyCoupon, removeCoupon }) {
+  const [code, setCode] = useState(coupon ? coupon.code:"");
+  const [codeAccepted, setCodeAccepted] = useState();
+
+  const handleSearchInputChange = (e) => {
+    if (!codeAccepted) setCode(e.target.value);
+  };
+
+  // const handleRemoveCoupon = () => {
+  //   applyCoupon();
+  //   removeCoupon();
+  // };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await verifyCoupon(code);
+      setCodeAccepted(true);
+      applyCoupon(response.data);
+      
+      console.log(response);
+    } catch (error) {
+      setCodeAccepted(false);
+      toast.error("Invalid Code");
+    }
+  };
+
   return (
-    <div>CartCoupon</div>
-  )
+    <Container>
+      <Row as={Form} onSubmit={handleSubmit} className="mb-4">
+        <Col as={Form.Group}>
+          {!codeAccepted ? (
+            <Form.Control
+              type="text"
+              placeholder="Enter Coupon Code"
+              name="code"
+              onChange={handleSearchInputChange}
+              inInvalid={codeAccepted === false}
+              value={code}
+            />
+          ) : (
+            <span>
+              {coupon.code} ({coupon.discount * 100}% off)
+            </span>
+          )}
+        </Col>
+        <Col className="my-auto">
+          
+            <Button
+              className="btn-sm "
+              type="submit"
+              variant="info"
+              disabled={codeAccepted}
+            >
+              Apply
+            </Button>
+          
+        </Col>
+      </Row>
+    </Container>
+  );
 }
 
-export default CartCoupon
+export default CartCoupon;

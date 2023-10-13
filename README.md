@@ -10,6 +10,7 @@ coupon codes:
 -lost on how to create the coupons endpoint...
 -what value do i use in Form Control in CartSumary.js
 -where do i get payload from?
+//where do i get payload from for apply_coupon?
 
 -how do i get the discount and code to apply_coupon?
 create payload (still not sure where that comes from), then create varaibles in the case for action.payload.couponCode, action.payload.couponDiscount
