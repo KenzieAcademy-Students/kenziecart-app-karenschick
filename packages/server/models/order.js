@@ -13,7 +13,7 @@ const orderSchema = new mongoose.Schema(
     },
     customerAddress1: {
       type: String,
-      required: false,
+      required: true,
     },
     customerAddress2: {
       type: String,

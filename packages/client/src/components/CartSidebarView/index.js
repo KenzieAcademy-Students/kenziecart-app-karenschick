@@ -11,7 +11,7 @@ const CartSidebarView = () => {
   const { closeSidebar, displaySidebar } = useUI();
   const { state, applyCoupon, removeCoupon } = useProvideCart();
   const { push } = useRouter();
-  console.log(state)
+  //console.log(state)
 
   const handleClose = () => closeSidebar();
   const handleCheckout = () => {

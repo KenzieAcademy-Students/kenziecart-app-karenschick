@@ -1,33 +1,26 @@
 import React from "react";
 import { Container, Row, Col, InputGroup, Form, Button } from "react-bootstrap";
 import { useState } from "react";
-import axios from "../../utils/axiosConfig";
 import { verifyCoupon } from "utils/axiosService";
 import { toast } from "react-toastify";
-//import "./CartCoupon.scss"
 
-function CartCoupon({ coupon, applyCoupon, removeCoupon }) {
-  console.log(coupon)
-  const [code, setCode] = useState(coupon ? coupon.code:"");
+function CartCoupon({ coupon, applyCoupon }) {
+  console.log(coupon);
+  const [code, setCode] = useState(coupon ? coupon.code : "");
   const [codeAccepted, setCodeAccepted] = useState();
 
   const handleSearchInputChange = (e) => {
     if (!codeAccepted) setCode(e.target.value);
   };
 
-  // const handleRemoveCoupon = () => {
-  //   applyCoupon();
-  //   removeCoupon();
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await verifyCoupon(code);      
+      const response = await verifyCoupon(code);
       applyCoupon(response.data);
       setCodeAccepted(true);
-      
+
       console.log(response);
     } catch (error) {
       setCodeAccepted(false);
@@ -55,16 +48,14 @@ function CartCoupon({ coupon, applyCoupon, removeCoupon }) {
           )}
         </Col>
         <Col className="my-auto">
-          
-            <Button
-              className="btn-sm "
-              type="submit"
-              variant="info"
-              disabled={codeAccepted}
-            >
-              Apply
-            </Button>
-          
+          <Button
+            className="btn-sm "
+            type="submit"
+            variant="info"
+            disabled={codeAccepted}
+          >
+            Apply
+          </Button>
         </Col>
       </Row>
     </Container>

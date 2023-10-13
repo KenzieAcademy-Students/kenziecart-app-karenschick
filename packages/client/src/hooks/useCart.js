@@ -132,25 +132,12 @@ const reducer = (state, action) => {
 
     case "APPLY_COUPON":
       //update the cart total
-
-      //const appliedCouponCode = action.payload.couponCode;
-      //const appliedCouponDiscount = action.payload.couponDiscount;
-console.log(action.payload)
+      //console.log(action.payload);
       return {
         ...state,
         coupon: action.payload,
         cartTotal: calculateCartTotal(nextCart, action.payload.discount),
-        //appliedCouponCode: appliedCouponCode,
-        //appliedCouponDiscount: appliedCouponDiscount,
       };
-
-    case "REMOVE_COUPON": {
-      return {
-        ...state,
-        coupon: null,
-        cartTotal: calculateCartTotal(nextCart),
-      };
-    }
 
     default:
       return state;
@@ -231,12 +218,6 @@ const useProvideCart = () => {
 
   const applyCoupon = (coupon) => {
     dispatch({ type: "APPLY_COUPON", payload: coupon });
-    
-  };
-
-  const removeCoupon = () => {
-    dispatch({ type: "REMOVE_COUPON"});
-   
   };
 
   //  Check for saved local cart on load and dispatch to set initial state
@@ -261,7 +242,6 @@ const useProvideCart = () => {
     updateCart,
     deleteCart,
     applyCoupon,
-    removeCoupon
   };
 };
 
