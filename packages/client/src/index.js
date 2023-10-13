@@ -9,17 +9,15 @@ import "./index.scss";
 import { CurrencyProvider } from "hooks/useCurrency";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ManagedUIContext>
-      <CurrencyProvider>
-        <ProvideCart>
-          <AppRouter>
-            <App />
-          </AppRouter>
-        </ProvideCart>
-      </CurrencyProvider>
-    </ManagedUIContext>
-  </React.StrictMode>,
+  <ManagedUIContext>
+    <CurrencyProvider>
+      <ProvideCart>
+        <AppRouter>
+          <App />
+        </AppRouter>
+      </ProvideCart>
+    </CurrencyProvider>
+  </ManagedUIContext>,
   document.getElementById("root")
 );
 
