@@ -44,7 +44,7 @@ function CartCoupon({ coupon, applyCoupon }) {
             />
           ) : (
             <span>
-              {coupon.code}   ({coupon.discount * 100}% off)
+              {coupon.code}  {" "} ({coupon.discount * 100}% off)
             </span>
             
           )}
