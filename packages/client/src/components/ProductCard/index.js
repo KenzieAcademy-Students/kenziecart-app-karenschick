@@ -13,7 +13,7 @@ export default function ProductCard({ product }) {
   const { getPrice } = useCurrency();
 
   const handleAddToCart = () => {
-    console.log(product);
+    //console.log(product);
     openSidebar();
     addItem({ ...product, quantity: 1 });
   };

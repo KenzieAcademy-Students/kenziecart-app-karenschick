@@ -18,13 +18,15 @@ export default function CheckoutPage(props) {
   const [orderId, setOrderId] = useState("");
 
   const placeOrder = async (orderFormData) => {
-    console.log("handlePlaceOrder", orderFormData);
+    //console.log("handlePlaceOrder", orderFormData);
     let orderData = {
       customerDetails: orderFormData,
       items: state.cart,
-      orderTotal: calculateCartTotal(state.cart, state.coupon ? state.coupon.discount : 0),
+      orderTotal: calculateCartTotal(
+        state.cart,
+        state.coupon ? state.coupon.discount : 0
+      ),
       coupon: state.coupon,
-      
     };
     setData({
       ...data,
@@ -33,8 +35,8 @@ export default function CheckoutPage(props) {
     });
     try {
       const orderConfirmation = await createOrder(orderData);
-      console.log(orderConfirmation);
-      console.log(orderConfirmation.data);
+      //console.log(orderConfirmation);
+      //console.log(orderConfirmation.data);
       toast.success(
         "Order #" + orderConfirmation.data._id + "  Successfully Placed",
         { position: toast.POSITION.TOP_CENTER }

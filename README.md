@@ -8,9 +8,33 @@ Questions/Notes:
 
 coupon codes:
 -lost on how to create the coupons endpoint...
+for create
+ const {code, discount} = req.query
+ await Coupon.create({code, discount})
+ res.sendStatus(200)
+ error 
+ res.status(500)
+for verify
+ const {code} = req.query
+ try {
+      const veryifyCoupon = await Coupon.findOne({ code: code.toUpperCase() });
+      if (!veryifyCoupon) {
+        return res.sendStatus(404);
+      }
+      res.send({
+        discount: veryifyCoupon.discount,
+        code: veryifyCoupon.code,
+      });
+    } catch (error) {
+      res.status(404).send("error");
+    }
+
 -what value do i use in Form Control in CartSumary.js
--where do i get payload from?
-//where do i get payload from for apply_coupon?
+
+-how do i store the coupon in local state?
+
+-where do i get payload from for apply_coupon?
+action.payload.discount 
 
 -how do i get the discount and code to apply_coupon?
 create payload (still not sure where that comes from), then create varaibles in the case for action.payload.couponCode, action.payload.couponDiscount

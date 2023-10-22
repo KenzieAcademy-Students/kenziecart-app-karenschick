@@ -21,7 +21,7 @@ router
   })
 
   .get("/verify", async (req, res) => {
-    const { code, discount } = req.query;
+    const { code } = req.query;
 
     try {
       const veryifyCoupon = await Coupon.findOne({ code: code.toUpperCase() });

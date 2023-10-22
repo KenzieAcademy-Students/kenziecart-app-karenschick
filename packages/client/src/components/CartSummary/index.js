@@ -23,7 +23,7 @@ export default function CartSummary({ cartTotal, discount }) {
                 <p>Discount</p>
               </Col>
               <Col xs="3" className="text-right">
-                <p className="summary-value">{discount * 100}% off</p>
+                <p className="text-primary">{discount * 100}% off</p>
               </Col>
             </Row>
           </>

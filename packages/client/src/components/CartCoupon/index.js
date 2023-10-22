@@ -5,7 +5,7 @@ import { verifyCoupon } from "utils/axiosService";
 import { toast } from "react-toastify";
 
 function CartCoupon({ coupon, applyCoupon }) {
-  console.log(coupon);
+  //console.log(coupon);
   const [code, setCode] = useState(coupon ? coupon.code : "");
   const [codeAccepted, setCodeAccepted] = useState();
 
@@ -20,8 +20,7 @@ function CartCoupon({ coupon, applyCoupon }) {
       const response = await verifyCoupon(code);
       applyCoupon(response.data);
       setCodeAccepted(true);
-
-      console.log(response);
+      //console.log(response);
     } catch (error) {
       setCodeAccepted(false);
       toast.error("Invalid Code");
@@ -30,7 +29,7 @@ function CartCoupon({ coupon, applyCoupon }) {
 
   return (
     <Container>
-      <Row as={Form} onSubmit={handleSubmit} className="mt-3 mb-3">
+      <Row as={Form} onSubmit={handleSubmit} className="mt-4 mb-3 text-primary">
         <>
         <Col  xs={12} md={6}>
           {!codeAccepted ? (
